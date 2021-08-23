@@ -1,0 +1,91 @@
+                        <!-- begin:: Content -->
+                        <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+                        	<form action="#" id="searchReports" enctype="multipart/form-data" method="post">
+                        		<div class="kt-portlet kt-portlet--mobile">
+                        			<div class="kt-portlet__head kt-portlet__head--lg">
+                        				<div class="kt-portlet__head-label">
+                        					<span class="kt-portlet__head-icon">
+                        						<i class="kt-font-brand flaticon2-search"></i>
+                        					</span>
+                        					<h3 class="kt-portlet__head-title">
+                        						Cari Berdasarkan Tanggal
+                        					</h3>
+                        				</div>
+                        				<div class="kt-portlet__head-toolbar">
+                        					<div class="kt-portlet__head-wrapper">
+                        						<div class="kt-portlet__head-actions">
+                        							<button type="submit" class="btn btn-brand btn-elevate btn-icon-sm">
+                        								<i class="la la-search"></i>
+                        								Cari
+                        							</button>
+                        						</div>
+                        					</div>
+                        				</div>
+                        			</div>
+                        			<div class="kt-portlet__body">
+                        				<div class="row">
+                        					<div class="col-md-12 col-sm-12 col-lg-12">
+                        						<div class="form-group">
+                        							<label>Tanggal</label>
+                        							<input type="text" name="tanggal" class="form-control" id="tanggal"
+                        								required placeholder="Pilih Tanggal">
+                        						</div>
+                        					</div>
+                        				</div>
+                        			</div>
+                        		</div>
+                        	</form>
+
+                        	<div class="kt-portlet kt-portlet--mobile informationSection" style="display:none;">
+                        		<div class="kt-portlet__head kt-portlet__head--lg">
+                        			<div class="kt-portlet__head-label">
+                        				<span class="kt-portlet__head-icon">
+                        					<i class="kt-font-brand flaticon2-file"></i>
+                        				</span>
+                        				<h3 class="kt-portlet__head-title">
+                        					Informasi
+                        				</h3>
+                        			</div>
+                        		</div>
+                        		<div class="kt-portlet__body table-responsive">
+                        			<table class="table table-striped table-bordered table-hover">
+                        				<tbody>
+                        					<tr>
+                        						<td>Total Penjualan</td>
+                        						<td>:</td>
+                        						<td id="totalPenjualan"></td>
+                        					</tr>
+                        				</tbody>
+                        			</table>
+                        		</div>
+                        	</div>
+
+                        	<div class="kt-portlet kt-portlet--mobile data-proces data-proces-profil informationSection" style="display:none;">
+                        		<div class="kt-portlet__head kt-portlet__head--lg">
+                        			<div class="kt-portlet__head-label"><span class="kt-portlet__head-icon">
+                        					<i class="kt-font-brand flaticon2-checking"></i></span>
+                        				<h3 class="kt-portlet__head-title">Daftar Transaksi
+                        				</h3>
+                        			</div>
+                        		</div>
+                        		<div class="kt-portlet__body table-responsive">
+                        			<table class="table table-striped table-bordered table-hover table-checkable"
+                        				id="listTransaksi">
+                        				<thead>
+                        					<tr>
+                        						<th>No.</th>
+                        						<th>No. Faktur</th>
+                        						<th>Barang</th>
+                        						<th>Jumlah Jual</th>
+                        						<th>Harga Jual</th>
+                        						<th>Total Jual</th>
+                        						<th>Pengguna</th>
+                        					</tr>
+                        				</thead>
+                        				<tbody id="bodyListTransaksi">
+
+                        				</tbody>
+                        			</table>
+                        		</div>
+                        	</div>
+                        </div>

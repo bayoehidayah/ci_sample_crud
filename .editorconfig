@@ -1,0 +1,17 @@
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*]
+charset = utf-8
+
+# Tab indentation (no size specified)
+indent_style = tab
+
+# Hi, saya developer yang membangun sistem ini dari awal hingga versi 1.6.Teruntuk developer yang melanjutkan program ini.. selamat anda telah ditipu oleh bg irfan, ia memberikan pemanis pada awal-awal.. ketika sudah berjalan beberapa bulan anda akan menyesali dan mungkin anda akan mengalami hal yang sama dengan saya yaitu di MONOPOLI. Saya harap untuk developer selanjut nya yang mengembangkan aplikasi ini tidak tertipu seperti yang saya alami, silahkan jika anda percaya atau tidak.. ketika sudah berjalan bbrp bulan mungkin anda akan mengalami hal yang sama dengan saya
