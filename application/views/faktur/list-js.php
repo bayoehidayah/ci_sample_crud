@@ -1,11 +1,6 @@
 <script>
-    var table;
     $(document).ready(function(){
-        $('#modalBarang').on('shown.bs.modal', function () {
-            $("#barang").select2();
-        });
-
-        table = $('#tableBarang').DataTable({
+        table = $('#tableFaktur').DataTable({
             'responsive' : true,
             "processing": true,
             "serverSide": true,
@@ -13,34 +8,42 @@
             "order": [[ 0, 'asc' ]],
             "ajax":
             {
-                "url": "<?= base_url('barang/stok/datas/'.$tanggal) ?>",
+                "url": "<?= base_url('faktur/datas') ?>",
                 "type": "POST"
             },
             "deferRender": true,
             "aLengthMenu": [[10, 50, 100],[ 10, 50, 100]],
             "columns": [
-                { "data": "id" }, 
-                { "data": "id_barang" }, 
-                { "data": "stok_awal" },
-                { "data": "pembelian" },
-                { "data": "penjualan" },
-                { "data": "sisa_stok" },
+				{ "render" : function ( data, type, row, meta ) {
+						return meta.row;
+					} 
+				},
+                { "data": "nama_pelanggan" }, 
+				{ "render" : function( data, type, row) {
+                        return formatCurrency(row.total_items, 0);
+                    }
+                },
+				{ "render" : function( data, type, row) {
+                        return "Rp "+formatCurrency(row.total_harga, 0);
+                    }
+                },
                 { "data": "created_at" },
                 { "render": function ( data, type, row ) {
-                        var html = '<a href="javascript:void(0);" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Delete Barang" onclick="delBarang(\''+row.id+'\')"><i class="la la-trash"></i></a>';
+                        var html  = '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="javascript:void(0);" title="Edit Faktur" onclick="editFaktur(\''+row.id+'\')"><i class="la la-edit"></i></a>';
+                        html += '<a href="javascript:void(0);" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Delete Faktur" onclick="delFaktur(\''+row.id+'\')"><i class="la la-trash"></i></a>';
                         return html;
                     }
                 },
             ],
         });
 
-        $("#barangForm").submit(function(e){
+        $("#fakturForm").submit(function(e){
             e.preventDefault();
             var form_data = new FormData(this);
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url("barang/stok/save/". $tanggal);  ?>",
+                url: "<?php echo base_url("faktur/form");  ?>",
                 data: form_data,
                 dataType: "JSON",
                 processData:false,
@@ -67,8 +70,8 @@
                                 Swal.showLoading()
                             }
                         }).then((result) => {
-                            $("#barangForm")[0].reset();
-                            $("#modalBarang").modal("toggle");
+                            // $("#fakturForm")[0].reset();
+                            // $("#modalFaktur").modal("toggle");
                             
                             if(result.dismiss === Swal.DismissReason.timer){
                                 table.ajax.reload(null, false)
@@ -95,15 +98,15 @@
         })
     });
 
-    function delBarang(id){
+    function delFaktur(id){
         swal.fire({
             title : "Perhatian!",
-            html : "Data stok barang tidak dapat dikembalikan",
+            html : "Data faktur tidak dapat dikembalikan",
             type : "info",
             showCancelButton : true,
             showLoaderOnConfirm : true,
             preConfirm : () => {
-                return fetch("<?= base_url("barang/stok/delete/tanggal/"); ?>" + id)
+                return fetch("<?= base_url("faktur/delete/"); ?>" + id)
                 .then(response => {
                     if(!response.ok){
                         throw new Error(response.statusText);
@@ -116,7 +119,7 @@
                     }
                 })
                 .catch(error => {
-                    swal.showValidationMessage("Terjadi kesalahan dalam menghapus barang");
+                    swal.showValidationMessage("Terjadi kesalahan dalam menghapus faktur");
                 })
             },
             allowOutsideClick : () => !swal.isLoading()
@@ -124,7 +127,7 @@
             if(result.value){
                 swal.fire({
                     title : "Success!",
-                    text : "Barang telah berhasil dihapus",
+                    text : "Faktur telah berhasil dihapus",
                     type : "success",
                     timer : 2000,
                     onBeforeOpen: () => {

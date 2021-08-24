@@ -64,15 +64,13 @@ $route[$barang."/delete/(:any)"]    = "barang/deleteBarang/$1";
 $route[$barang."/form"]             = "barang/barangFormActions";
 $route[$barang."/(:any)"]           = "barang/barangData/$1";
 
-// $stok = $barang."/stok";
-// $route[$stok]                           = "barang/stokBarang";
-// $route[$stok."/set-tanggal"]["post"]    = "barang/setTanggalStok";
-// $route[$stok."/tanggal/(:any)"]         = "barang/viewStokPerTanggal/$1";
-// $route[$stok."/save/(:any)"]            = "barang/saveStok/$1";
-// $route[$stok."/delete/tanggal/(:num)"]  = "barang/deleteStokBarangTanggal/$1";
-// $route[$stok."/delete/(:any)"]          = "barang/deleteStokBarang/$1";
-// $route[$stok."/datas"]                  = "barang/getListStokBarang";
-// $route[$stok."/datas/(:any)"]           = "barang/getListStokBarangPertanggal/$1";
+$faktur = "faktur";
+$route[$faktur]                    = "faktur/showAllFaktur";
+$route[$faktur."/datas"]["post"]   = "faktur/getListFakturData";
+$route[$faktur."/form"]     	   = "faktur/form";
+$route[$faktur."/show/(:any)"]     = "faktur/editData/$1";
+$route[$faktur."/delete/(:any)"]   = "faktur/deleteFaktur/$1";
+$route[$faktur."/save/(:any)"]     = "faktur/saveFaktur/$1";
 
 
 // //Simpanan

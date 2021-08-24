@@ -13,4 +13,4 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array("model_auth", "model_remun", "model_transaksi", "model_aktivitas", "model_pegawai", "model_referensi", "model_users", "model_barang", "model_simpanan");
+$autoload['model'] = array("model_barang", "model_faktur");

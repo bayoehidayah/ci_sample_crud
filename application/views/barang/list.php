@@ -12,7 +12,7 @@
                         			</div>
                         			<div class="kt-portlet__head-toolbar">
                         				<div class="kt-portlet__head-wrapper">
-                        					<div 1class="kt-portlet__head-actions">
+                        					<div class="kt-portlet__head-actions">
                         						<a href="javascript:void(0);" class="btn btn-brand btn-elevate btn-icon-sm" id="btnAdd" data-toggle="modal" data-target="#modalBarang">
                         							<i class="la la-plus"></i>
                         							Barang Baru
