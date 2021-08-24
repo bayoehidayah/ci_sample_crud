@@ -68,8 +68,8 @@
                                 Swal.showLoading()
                             }
                         }).then((result) => {
-                            // $("#barangForm")[0].reset();
-                            // $("#modalBarang").modal("toggle");
+                            $("#barangForm")[0].reset();
+                            $("#modalBarang").modal("toggle");
                             
                             if(result.dismiss === Swal.DismissReason.timer){
                                 table.ajax.reload(null, false)

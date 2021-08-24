@@ -79,6 +79,12 @@
                         					<tbody>
 
                         					</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="5">Total</td>
+													<td id="totalSection"></td>
+												</tr>
+											</tfoot>
                         				</table>
                         			</div>
                         		</div>
@@ -97,29 +103,31 @@
                         				<div class="modal-body">
                         					<div class="form-group">
                                                 <label>Barang *</label>
-												<select class="form-control m-select2" id="barangForm" name="barang" required>
+												<select class="form-control m-select2" id="barang" name="barang" required>
 													<option value="" selected disabled>Pilih Barang</option>
 													<?php
 														foreach($barang as $row){
-															echo '<option value="'.$row->id.'" selected>'.$row->nama.'</option>';
+															echo '<option value="'.$row->id.'" data-harga="'.$row->harga.'" data-last-stok="'.$row->last_stok.'">'.$row->nama.'</option>';
 														}
 													?>
 												</select>
                                             </div>
                         					<div class="form-group">
-                                                <label>Harga *</label>
+                                                <label>Harga</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-                                                    <input type="number" class="form-control" placeholder="Harga" name="harga" id="harga" required>
+                                                    <input type="number" class="form-control" placeholder="Harga" name="harga" id="harga" readonly>
                                                 </div>
                                             </div>
 
                         					<div class="form-group">
-                                                <label>Stok *</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-                                                    <input type="number" class="form-control" placeholder="Stok" name="stok" id="stok" required>
-                                                </div>
+                                                <label>Total Barang * </label>
+												<input type="number" class="form-control" placeholder="Total Barang Yang Dibeli" name="total_barang" id="total" required>
+                                            </div>
+
+                        					<div class="form-group">
+                                                <label>Total Harga</label>
+												<input type="number" class="form-control" placeholder="Total Barang x Harga" id="totalHarga" readonly>
                                             </div>
                         				</div>
                         				<div class="modal-footer">
