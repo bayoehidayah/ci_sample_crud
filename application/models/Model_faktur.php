@@ -8,6 +8,15 @@
             else {return false;}
 		}
 
+		function checkChildData($idFaktur, $idBarang){
+			$check = $this->db->get_where("faktur_items", [
+				"id_faktur" => $idFaktur,
+				"id_barang" => $idBarang
+			])->num_rows();
+            if($check > 0){ return true; }
+            else {return false;}
+		}
+
 		function getData($id){
             return $this->db->get_where("faktur", ["id" => $id])->row();
         }

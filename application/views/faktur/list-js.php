@@ -15,7 +15,7 @@
             "aLengthMenu": [[10, 50, 100],[ 10, 50, 100]],
             "columns": [
 				{ "render" : function ( data, type, row, meta ) {
-						return meta.row;
+						return meta.row + 1;
 					} 
 				},
                 { "data": "nama_pelanggan" }, 
@@ -29,7 +29,7 @@
                 },
                 { "data": "created_at" },
                 { "render": function ( data, type, row ) {
-                        var html  = '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="javascript:void(0);" title="Edit Faktur" onclick="editFaktur(\''+row.id+'\')"><i class="la la-edit"></i></a>';
+                        var html  = '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="<?= base_url("faktur/show/") ?>'+row.id+'" title="Edit Faktur" onclick="editFaktur(\''+row.id+'\')"><i class="la la-edit"></i></a>';
                         html += '<a href="javascript:void(0);" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Delete Faktur" onclick="delFaktur(\''+row.id+'\')"><i class="la la-trash"></i></a>';
                         return html;
                     }

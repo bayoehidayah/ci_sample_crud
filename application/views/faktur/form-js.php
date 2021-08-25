@@ -1,5 +1,14 @@
 <script>
 	var items  = [];
+	const edit = <?= $edit; ?>
+
+	if(edit){
+		items = <?= json_encode($list_items); ?>;
+		loadData();
+		countTotalHarga();
+		countTotalBarang();
+	}
+
 	var barang = $("#barang");
 	$(document).ready(function(){
         $("#btnAdd").click(function(){
@@ -30,7 +39,8 @@
 				id_barang   : id_barang,
 				nama_barang : nama_barang,
 				total_barang: parseInt(totalBarang),
-				total_harga : parseInt(totalHarga)
+				total_harga : parseInt(totalHarga),
+				deleted 	: false
 			};
 
 			//Jika sudah ada maka akan diupdate
@@ -61,14 +71,21 @@
 					type : "info"
 				});
 			}
-			console.log(items);
+
 			var form_data = new FormData();
+			const json_item = JSON.stringify(items);
 			form_data.append("nama_pelanggan", $("#nama").val());
-			form_data.append("items", items);
+			form_data.append("items", json_item);
+
+			var urlActions = "<?= base_url("faktur/save");  ?>";
+			if(edit){
+				form_data.append("id", "<?= $faktur->id; ?>")
+				urlActions = "<?= base_url("faktur/update"); ?>";
+			}
 
 			$.ajax({
                 type       : "POST",
-                url        : "<?php echo base_url("faktur/save");  ?>",
+                url        : urlActions,
                 data       : form_data,
                 dataType   : "JSON",
                 cache	   : false,
@@ -86,7 +103,6 @@
                     })
                 },
                 success: function (response) {
-					console.log(response);
                     if(response.result){
                         swal.fire({
                             title : "Success!",
@@ -111,7 +127,6 @@
                     }
                 },
                 error : function(jqXHR, errorText, errorMessage){
-					console.log(errorMessage);
 					console.log(errorText);
                     swal.fire({
                         title : "Oops!",
@@ -127,7 +142,7 @@
 	function loadData(){
 		var table = $("#tableItems tbody");
 		//Empty table first
-		table.html("");
+		table.empty();
 		var i = 1;
 		for(const e of items){
 			let item = '<tr id="'+e.id_barang+'">'
@@ -163,17 +178,10 @@
 		}
 	}
 
-	function refreshDataNumber(){
-		var number = $("#tableItems tbody tr").length;
-		for(i = 1; i <= number; i++){
-			$("#tableItems tbody tr td:first-child").text(i);
-		}
-	}
-
 	function countTotalBarang(){
 		var total = 0;
 		for(const e of items){
-			total += e.total_barang
+			total = parseInt(total) + parseInt(e.total_barang);
 		}
 
 		$("#totalBarang").text(formatCurrency(total, 0));
@@ -182,15 +190,31 @@
 	function countTotalHarga(){
 		var total = 0;
 		for(const e of items){
-			total += e.total_harga
+			total = parseInt(total) + parseInt(e.total_harga);
 		}
 
 		$("#totalSection").text("Rp "+formatCurrency(total, 0));
 	}
 
 	function deleteData(id){
-		items = items.filter(el => el.id_barang != id);
-		$("#"+id).remove();
-		// refreshDataNumber();
+		const find = items.find(x => x.id_barang === id)
+		if(find){
+			if(edit){
+				find.deleted = true;
+			}else{
+				items = items.filter(el => el.id_barang != id);
+			}
+
+			$("#"+id).remove();
+		}
+		else{
+			swal.fire({
+				title : "Oops!",
+				text : "Tidak dapat menghapus data",
+				type : "error"
+			});
+		}
+		
+		loadData();
 	}
 </script>

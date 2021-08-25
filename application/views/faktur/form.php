@@ -15,7 +15,7 @@
                         			<div class="form-group row">
                         				<label for="nama" class="col-2 col-form-label">Nama Pelanggan</label>
                         				<div class="col-10">
-                        					<input class="form-control" type="text" name="nama" id="nama">
+                        					<input class="form-control" type="text" name="nama" id="nama" value="<?php if($edit){ echo $faktur->nama_pelanggan; } ?>">
                         				</div>
                         			</div>
                         		</div>
