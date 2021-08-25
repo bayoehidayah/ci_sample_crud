@@ -72,35 +72,3 @@ $route[$faktur."/show/(:any)"]     = "faktur/editData/$1";
 $route[$faktur."/delete/(:any)"]   = "faktur/deleteFaktur/$1";
 $route[$faktur."/save"]     	   = "faktur/saveFaktur";
 $route[$faktur."/update"]     	   = "faktur/updateFaktur";
-
-// //Simpanan
-// $simpanan = "simpanan";
-// $route[$simpanan]                   = "simpanan/show_all";
-// $route[$simpanan."/save"]           = "simpanan/saveSimpanan";
-// $route[$simpanan."/datas"]          = "simpanan/getListSimpanan";
-// $route[$simpanan."/delete/(:num)"]  = "simpanan/deleteSimpanan/$1";
-// $route[$simpanan."/(:num)"]         = "simpanan/showSimpanan/$1";
-
-// //Transaksi
-// $transaksi                            = "transaksi";
-// $route[$transaksi]                    = "transaksi/showAll";
-// $route[$transaksi."/datas"]           = "transaksi/getDataTransaksi";
-// $route[$transaksi."/save"]            = "transaksi/saveTransaksi";
-// $route[$transaksi."/delete/(:any)"]   = "transaksi/deleteTransaksi/$1";
-// $route[$transaksi."/faktur/new-code"] = "transaksi/generateNewId";
-
-// //Laporan
-// $laporanTransaksi = "laporan";
-// $laporanKoperasi  = $laporanTransaksi."/penjualan/koperasi";
-// $laporanByFaktur  = $laporanTransaksi."/penjualan/by-faktur";
-
-// $route[$laporanKoperasi]            = "transaksi/laporanKoperasiShowAll";
-// $route[$laporanKoperasi."/process"] = "transaksi/laporanKoperasiProcessData";
-// $route[$laporanByFaktur]            = "transaksi/laporanByFakturShowAll"; 
-// $route[$laporanByFaktur."/process"] = "transaksi/laporanByFakturProcessData"; 
-
-// $bagi_hasil = $laporanTransaksi."/bagi-hasil";
-// $route[$bagi_hasil]            = "transaksi/laporanBagiHasilShowAll";
-// $route[$bagi_hasil."/process"] = "transaksi/laporanBagiHasilProcessData";
-
-// $route[$transaksi."/(:any)"]          = "transaksi/showTransaksi/$1";
