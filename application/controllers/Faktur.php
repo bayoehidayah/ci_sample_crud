@@ -59,40 +59,26 @@
 
         public function saveFaktur(){
             try {
-                $id   = $this->input->post("id");
-                $edit = $this->input->post("edit");
+				$id  = $this->uuid->v4(true);
+				$set = [
+					"nama"      => $this->input->post("nama"),
+					"harga"     => $this->input->post("harga"),
+					"last_stok" => $this->input->post("stok")
+				];
 
-                if(!$this->model_barang->checkBarang($id) && $edit == "1"){
-                    $data['result'] = false;
-                    $data['msg']    = "Data tidak diketahui";
-                }
-                else{
-                    $set = [
-                        "nama"  => $this->input->post("nama"),
-                        "harga" => $this->input->post("harga"),
-                        "last_stok"  => $this->input->post("stok")
-                    ];
+				$this->db->trans_begin();
+				
+				$set["id"]         = $id;
+				$set["created_at"] = $this->currentTime;
+				$doActions         = $this->db->insert("faktur", $set);
 
-					$this->db->trans_begin();
-
-                    if($edit == "1"){
-                        $set["updated_at"] = $this->currentTime;
-                        $doActions         = $this->db->where("id", $id)->update("barang", $set);
-                    }
-                    else{
-                        $set["id"]         = $this->uuid->v4(true);
-                        $set["created_at"] = $this->currentTime;
-                        $doActions         = $this->db->insert("barang", $set);
-                    }
-
-                    if(!$doActions){
-						throw new \Exception("Terjadi kesalahan dalam menyimpan data");
-					}
-                    
-					$data['result'] = true;
-					$data['msg'] = "Data telah berhasil disimpan";
-					$this->db->trans_commit();
-                }
+				if(!$doActions){
+					throw new \Exception("Terjadi kesalahan dalam menyimpan data");
+				}
+				
+				$data['result'] = true;
+				$data['msg'] = "Data telah berhasil disimpan";
+				$this->db->trans_commit();
             } catch (\Throwable $th) {
 				$this->db->trans_rollback();
                 $data['result'] = false;

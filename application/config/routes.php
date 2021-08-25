@@ -70,7 +70,7 @@ $route[$faktur."/datas"]["post"]   = "faktur/getListFakturData";
 $route[$faktur."/form"]     	   = "faktur/form";
 $route[$faktur."/show/(:any)"]     = "faktur/editData/$1";
 $route[$faktur."/delete/(:any)"]   = "faktur/deleteFaktur/$1";
-$route[$faktur."/save/(:any)"]     = "faktur/saveFaktur/$1";
+$route[$faktur."/save"]     	   = "faktur/saveFaktur";
 
 
 // //Simpanan
