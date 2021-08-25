@@ -54,7 +54,6 @@
 
 		$("#submitBtn").click(function (e) { 
 			e.preventDefault();
-			var form_data = new FormData();
 			if(items.length == 0){
 				return swal.fire({
 					title : "Oops!",
@@ -62,17 +61,19 @@
 					type : "info"
 				});
 			}
-
+			console.log(items);
+			var form_data = new FormData();
 			form_data.append("nama_pelanggan", $("#nama").val());
 			form_data.append("items", items);
-			
+
 			$.ajax({
-                type: "POST",
-                url: "<?php echo base_url("faktur/save");  ?>",
-                data: form_data,
-                dataType: "JSON",
-                processData:false,
-                contentType:false,
+                type       : "POST",
+                url        : "<?php echo base_url("faktur/save");  ?>",
+                data       : form_data,
+                dataType   : "JSON",
+                cache	   : false,
+                processData: false,
+                contentType: false,
                 beforeSend : function(){
                     swal.fire({
                         title : "Mohon tunggu...",
@@ -85,6 +86,7 @@
                     })
                 },
                 success: function (response) {
+					console.log(response);
                     if(response.result){
                         swal.fire({
                             title : "Success!",
@@ -96,7 +98,7 @@
                             }
                         }).then((result) => { 
                             if(result.dismiss === Swal.DismissReason.timer){
-                                document.location.href = "<?= base_url("faktur"); ?>"
+                                // document.location.href = "<?= base_url("faktur"); ?>"
                             }
                         });
                     }
@@ -108,7 +110,9 @@
                         });
                     }
                 },
-                error : function(errorText){
+                error : function(jqXHR, errorText, errorMessage){
+					console.log(errorMessage);
+					console.log(errorText);
                     swal.fire({
                         title : "Oops!",
                         text : "Terjadi kesalahan dalam menyimpan data",

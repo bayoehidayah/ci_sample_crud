@@ -58,12 +58,13 @@
         }
 
         public function saveFaktur(){
+			
             try {
 				$id  = $this->uuid->v4(true);
 				$set = [
-					"nama"      => $this->input->post("nama"),
-					"harga"     => $this->input->post("harga"),
-					"last_stok" => $this->input->post("stok")
+					"nama_pelanggan" => $this->input->post("nama_pelanggan"),
+					"total_items"    => 0,
+					"total_harga"    => 0
 				];
 
 				$this->db->trans_begin();
@@ -76,6 +77,36 @@
 					throw new \Exception("Terjadi kesalahan dalam menyimpan data");
 				}
 				
+				//Count Data
+				$items        = $this->input->post("items");
+				$total_barang = 0;
+				$total_harga  = 0;
+				
+				echo json_encode(["adas" => $items[0]["nama_barang"]]);
+				return;
+				foreach($items as $key => $item){
+					$setItem = [
+						"id_faktur"    => $id,
+						"id_barang"    => $item["id_barang"],
+						"nama_barang"  => $item["nama_barang"],
+						"total_barang" => $item["total_barang"],
+						"total_harga"  => $item["total_harga"],
+						"created_at"   => $this->currentTime
+					];
+					$actions = $this->db->insert("faktur_items", $setItem);
+					if(!$actions){
+						throw new \Exception("Terjadi kesalahan dalam menyimpan data");
+					}
+
+					$total_barang += $item->total_barang;
+					$total_harga  += $item->total_harga;
+				}
+
+				$this->db->where("id", $id)->update("faktur", [
+					"total_items" => $total_barang,
+					"total_harga" => $total_harga,
+				]);
+
 				$data['result'] = true;
 				$data['msg'] = "Data telah berhasil disimpan";
 				$this->db->trans_commit();

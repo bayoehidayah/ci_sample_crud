@@ -72,7 +72,6 @@ $route[$faktur."/show/(:any)"]     = "faktur/editData/$1";
 $route[$faktur."/delete/(:any)"]   = "faktur/deleteFaktur/$1";
 $route[$faktur."/save"]     	   = "faktur/saveFaktur";
 
-
 // //Simpanan
 // $simpanan = "simpanan";
 // $route[$simpanan]                   = "simpanan/show_all";
