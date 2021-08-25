@@ -178,9 +178,23 @@
 		}
 	}
 
+	function refreshNumber(){
+		var table = $("#tableItems tbody tr").length;
+		for(var i = 0; i < table; i++){
+			const j = i + 1;
+			$("#tableItems tbody tr td:first-child").eq(i).text(j);
+		}
+	}
+
 	function countTotalBarang(){
 		var total = 0;
 		for(const e of items){
+			if(typeof e.deleted != "undefined"){
+				if(e.deleted){
+					continue;
+				}
+			}
+
 			total = parseInt(total) + parseInt(e.total_barang);
 		}
 
@@ -190,6 +204,12 @@
 	function countTotalHarga(){
 		var total = 0;
 		for(const e of items){
+			if(typeof e.deleted != "undefined"){
+				if(e.deleted){
+					continue;
+				}
+			}
+
 			total = parseInt(total) + parseInt(e.total_harga);
 		}
 
@@ -214,7 +234,9 @@
 				type : "error"
 			});
 		}
-		
-		loadData();
+
+		refreshNumber();
+		countTotalBarang();
+		countTotalHarga();
 	}
 </script>
