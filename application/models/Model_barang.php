@@ -25,7 +25,6 @@
             $this->db->like('id', $search); 
             $this->db->or_like('nama', $search); 
             $this->db->or_like('harga', $search); 
-            $this->db->or_like('last_stok', $search); 
             $this->db->or_like('created_at', $search); 
             $this->db->order_by($order_field, $order_ascdesc);
             $this->db->limit($limit, $start);
@@ -40,7 +39,6 @@
             return $this->db->like('id', $search)
                 ->or_like('nama', $search)
                 ->or_like('harga', $search)
-                ->or_like('last_stok', $search)
                 ->or_like('created_at', $search)
                 ->get("barang")->num_rows(); 
         }

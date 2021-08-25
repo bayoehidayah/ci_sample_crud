@@ -31,7 +31,6 @@
                         						<th>ID</th>
                         						<th>Nama</th>
                         						<th>Harga</th>
-                        						<th>Last Stok</th>
                         						<th>Dibuat Pada</th>
                         						<th>Actions</th>
                         					</tr>
@@ -69,14 +68,6 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
                                                     <input type="number" class="form-control" placeholder="Harga" name="harga" id="harga" required>
-                                                </div>
-                                            </div>
-
-                        					<div class="form-group">
-                                                <label>Stok *</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-                                                    <input type="number" class="form-control" placeholder="Stok" name="stok" id="stok" required>
                                                 </div>
                                             </div>
                         				</div>

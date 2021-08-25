@@ -24,7 +24,6 @@
                 { "data": "id" }, 
                 { "data": "nama" }, 
                 { "data": "harga" },
-                { "data": "last_stok" },
                 { "data": "created_at" },
                 { "render": function ( data, type, row ) {
                         var html  = '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="javascript:void(0);" title="Edit Barang" onclick="editBarang(\''+row.id+'\')"><i class="la la-edit"></i></a>';
@@ -125,7 +124,6 @@
 
                     $("#namaBarang").val(response.data.nama);
                     $("#harga").val(response.data.harga);
-                    $("#stok").val(response.data.last_stok);
                     
                 }
                 else{

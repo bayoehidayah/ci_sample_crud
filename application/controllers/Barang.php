@@ -54,8 +54,7 @@
                 else{
                     $set = [
                         "nama"  => $this->input->post("nama"),
-                        "harga" => $this->input->post("harga"),
-                        "last_stok"  => $this->input->post("stok")
+                        "harga" => $this->input->post("harga")
                     ];
 
 					$this->db->trans_begin();
